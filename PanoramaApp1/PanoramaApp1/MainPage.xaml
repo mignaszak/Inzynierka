@@ -1,0 +1,147 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="PanoramaApp1.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:amCharts="clr-namespace:AmCharts.Windows.QuickCharts;assembly=AmCharts.Windows.QuickCharts.WP"
+     xmlns:src="clr-namespace:PanoramaApp1"
+    mc:Ignorable="d"    
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="False">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+
+        <!-- LOCALIZATION NOTE:
+            To localize the displayed strings copy their values to appropriately named
+            keys in the app's neutral language resource file (AppResources.resx) then
+            replace the hard-coded text value between the attributes' quotation marks
+            with the binding clause whose path points to that string name.
+
+            For example:
+
+                Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}"
+
+            This binding points to the template's string resource named "ApplicationTitle".
+
+            Adding supported languages in the Project Properties tab will create a
+            new resx file per language that can carry the translated values of your
+            UI strings. The binding in these examples will cause the value of the
+            attributes to be drawn from the .resx file that matches the
+            CurrentUICulture of the app at run time.
+         -->
+
+        <!--Panorama control-->
+        <phone:Panorama Title="Kontrolka Alarmu" Background="Black" Foreground="White" Loaded="Panorama_Loaded">
+            <!--Panorama item one-->
+            <phone:PanoramaItem Header="Temperatura" Height="607">
+                <Grid>
+                      <amCharts:SerialChart AxisForeground="White"  BorderBrush="White" x:Name="chartTemperature" PlotAreaBackground="Black" MinimumCategoryGridStep="12" CategoryValueMemberPath="Cat1"
+                                       Width="400" Height="255" Margin="10,-40,10,0" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="0" >
+                        <amCharts:SerialChart.Graphs>
+                            <amCharts:LineGraph ValueMemberPath="Line1" Title="Temperatura" Brush="Blue" StrokeThickness="3"/>
+                        </amCharts:SerialChart.Graphs>
+                    </amCharts:SerialChart>
+                    <StackPanel x:Name="tempIntervalPanel1" Width="192" Margin="10,215,0,219" HorizontalAlignment="Left">
+                        <TextBlock x:Name="txtTempMinDate" FontSize="15" Text="" TextAlignment="Left"  TextWrapping="Wrap"  Height="{StaticResource PhoneFontSizeExtraLarge}"/>
+                    </StackPanel>
+                    <StackPanel x:Name="tempIntervalPanel2" Width="192" Margin="207,215,0,219" HorizontalAlignment="Left">
+                        <TextBlock x:Name="txtTempMaxDate" FontSize="15" Text="" TextAlignment="Right"  TextWrapping="Wrap"  Height="{StaticResource PhoneFontSizeExtraLarge}"/>
+                    </StackPanel>
+                    <StackPanel x:Name="tempDatePanel" Width="400" Margin="10,264,0,126" HorizontalAlignment="Left">
+                        <TextBlock  TextWrapping="Wrap" Text="Data ostatniego pomiaru" Height="{StaticResource PhoneFontSizeExtraLarge}" UseLayoutRounding="True"/>
+                        <TextBlock x:Name="txtTempDate" TextAlignment="Center"  TextWrapping="Wrap"  Height="{StaticResource PhoneFontSizeExtraLarge}"/>
+                    </StackPanel>
+                    <StackPanel x:Name="tempValuePanel" Width="400" Margin="10,362,0,19" HorizontalAlignment="Left" >
+                        <TextBlock TextWrapping="Wrap" Text="Wartość ostatniego pomiaru" Height="{StaticResource PhoneFontSizeExtraLarge}"/>
+                        <TextBlock x:Name="txtTempValue" TextAlignment="Center" TextWrapping="NoWrap" Height="55" VerticalAlignment="Top" HorizontalAlignment="Left" Width="400"/>
+                    </StackPanel>
+                </Grid>
+            </phone:PanoramaItem>
+            
+            <!--Panorama item two-->
+            <phone:PanoramaItem Header="Wilgotność">
+                <Grid>
+                    <amCharts:SerialChart AxisForeground="White"  BorderBrush="White" x:Name="chartHumidity" PlotAreaBackground="Black" MinimumCategoryGridStep="12" CategoryValueMemberPath="Cat1"
+                                       Width="400" Height="255" Margin="10,-40,10,0" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="0" >
+                        <amCharts:SerialChart.Graphs>
+                            <amCharts:LineGraph ValueMemberPath="Line1" Title="Humidity" Brush="Red" StrokeThickness="3"/>
+                        </amCharts:SerialChart.Graphs>
+                    </amCharts:SerialChart>
+                    <StackPanel x:Name="humIntervalPanel1" Width="192" Margin="10,215,0,219" HorizontalAlignment="Left">
+                        <TextBlock x:Name="txthumMinDate" FontSize="15" Text="" TextAlignment="Left"  TextWrapping="Wrap"  Height="{StaticResource PhoneFontSizeExtraLarge}"/>
+                    </StackPanel>
+                    <StackPanel x:Name="humIntervalPanel2" Width="192" Margin="207,215,0,219" HorizontalAlignment="Left">
+                        <TextBlock x:Name="txthumMaxDate" FontSize="15" Text="" TextAlignment="Right"  TextWrapping="Wrap"  Height="{StaticResource PhoneFontSizeExtraLarge}"/>
+                    </StackPanel>
+                    <StackPanel x:Name="humDatePanel" Width="400" Margin="10,264,0,126" HorizontalAlignment="Left">
+                        <TextBlock  TextWrapping="Wrap" Text="Data ostatniego pomiaru" Height="{StaticResource PhoneFontSizeExtraLarge}" UseLayoutRounding="True"/>
+                        <TextBlock x:Name="txthumDate" TextAlignment="Center"  TextWrapping="Wrap"   Height="{StaticResource PhoneFontSizeExtraLarge}" />
+                    </StackPanel>
+                    <StackPanel x:Name="humValuePanel" Width="400" Margin="10,362,0,19" HorizontalAlignment="Left" >
+                        <TextBlock TextWrapping="Wrap" Text="Wartość ostatniego pomiaru" Height="{StaticResource PhoneFontSizeExtraLarge}"/>
+                        <TextBlock x:Name="txthumValue" TextAlignment="Center" TextWrapping="NoWrap" Height="55" VerticalAlignment="Top" HorizontalAlignment="Left" Width="400"/>
+                    </StackPanel>
+                </Grid>
+            </phone:PanoramaItem>
+
+            <!--Panorama item three-->
+            <phone:PanoramaItem Header="Wykryty ruch" Orientation="Horizontal">
+                <!--Double line list with image placeholder and text wrapping using a floating header that scrolls with the content-->
+                <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" ShowGridLines="True" >
+                    <ListBox Margin="0,0,0,0" Name="alarmListBox" ItemContainerStyle="{StaticResource ListBoxItemStyle1}" >                    
+                        <ListBox.Items>
+                            <ListBoxItem Content="Brazil"/>
+                            <ListBoxItem Content="China"/>
+                            <ListBoxItem Content="India"/>
+                            <ListBoxItem Content="Switzerland"/>
+                            <ListBoxItem Content="Austria"/>
+                        </ListBox.Items>
+                    </ListBox>
+                </Grid>
+                <!--Double wide Panorama with large image placeholders-->
+                <!--<Grid>
+                    <StackPanel Margin="0,4,16,0" Orientation="Vertical" VerticalAlignment="Top">
+                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                            <Border Background="#FFFFC700" Height="173" Width="173" Margin="12,0,0,0"/>
+                            <Border Background="#FFFFC700" Height="173" Width="173" Margin="12,0,0,0"/>
+                            <Border Background="#FFFFC700" Height="173" Width="173" Margin="12,0,0,0"/>
+                            <Border Background="#FFFFC700" Height="173" Width="173" Margin="12,0,0,0"/>
+                        </StackPanel>
+                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="0,12,0,0">
+                            <Border Background="#FFFFC700" Height="173" Width="173" Margin="12,0,0,0"/>
+                            <Border Background="#FFFFC700" Height="173" Width="173" Margin="12,0,0,0"/>
+                            <Border Background="#FFFFC700" Height="173" Width="173" Margin="12,0,0,0"/>
+                            <Border Background="#FFFFC700" Height="173" Width="173" Margin="12,0,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>-->
+            </phone:PanoramaItem>
+        </phone:Panorama>
+
+        <!--Uncomment to see an alignment grid to help ensure your controls are
+            aligned on common boundaries.  The image has a top margin of -32px to
+            account for the System Tray. Set this to 0 (or remove the margin altogether)
+            if the System Tray is hidden.
+
+            Before shipping remove this XAML and the image itself.-->
+        <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->
+
+    </Grid>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" BackgroundColor="Black" Mode="Minimized" ForegroundColor="White">
+            <shell:ApplicationBarIconButton Click="RefreshEvent" IconUri="/Assets/AppBar/refresh.png" Text="Odśwież"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Click="ShowSettingsPageEvent" Text="Ustawienia"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+</phone:PhoneApplicationPage>
+    
+   
