@@ -1,6 +1,6 @@
-﻿using PanoramaApp1.Resources;
+﻿using KontrolkaAlarmu.Resources;
 
-namespace PanoramaApp1
+namespace KontrolkaAlarmu
 {
     /// <summary>
     /// Provides access to string resources.

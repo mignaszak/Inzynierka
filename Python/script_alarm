@@ -1,11 +1,11 @@
 ### BEGIN INIT INFO
-# Provides:          test
+# Provides:          scipt_alarm
 # Required-Start:  $all 
 # Required-Stop:  $all
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: proba
-# Description:       Enable service provided by daemon.
+# Short-Description: alarm script
+# Description:       Run Raspberry Pi alarm service
 ### END INIT INFO
 
 cd /home/pi/Documents/projekty

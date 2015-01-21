@@ -156,3 +156,5 @@ E:\Projekty\Inzynierka\PanoramaApp1\PanoramaApp1\obj\Debug\PanoramaApp1.csproj.G
 E:\Projekty\Inzynierka\PanoramaApp1\PanoramaApp1\obj\Debug\PanoramaApp1.dll
 E:\Projekty\Inzynierka\PanoramaApp1\PanoramaApp1\obj\Debug\PanoramaApp1.pdb
 E:\Projekty\Inzynierka\PanoramaApp1\PanoramaApp1\obj\Debug\XapCacheFile.xml
+E:\Projekty\Inzynierka\PanoramaApp1\PanoramaApp1\obj\Debug\KontolkaAlarmu.g.resources
+E:\Projekty\Inzynierka\PanoramaApp1\PanoramaApp1\obj\Debug\KontolkaAlarmu.Resources.AppResources.resources

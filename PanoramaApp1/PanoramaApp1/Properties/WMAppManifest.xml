@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{aa5af18c-c748-46e3-a92a-dc0485c22d74}" Title="Kontrolka Alarmu" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="PanoramaApp1 author" Description="Sample description" Publisher="PanoramaApp1" PublisherID="{c9937999-8b8c-4cd1-a0e2-18865d22c4be}">
+  <App xmlns="" ProductID="{aa5af18c-c748-46e3-a92a-dc0485c22d74}" Title="Kontrolka Alarmu" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Mikołaj Ignaszak" Description="Sample description" Publisher="" PublisherID="{c9937999-8b8c-4cd1-a0e2-18865d22c4be}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />

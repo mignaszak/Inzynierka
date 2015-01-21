@@ -1,40 +1,38 @@
-import RPi.GPIO as GPIO #Modu³ obs³uguj¹cy porty Raspberry Pi
+import RPi.GPIO as GPIO
 import subprocess
 import re
 import sys
 import time
 import datetime
 import gspread
-import MySQLdb #Modu³ zapewniaj¹cy kontakt z baz¹ danych
+import MySQLdb
 
-#Zmienne przechowuj¹ce numerów pinów, do których podpiête s¹ czujnik ruchu i dioda
-PIR = 23 
+PIR = 23
 LED = 3
 
-#Ustawienie typów pinów
-GPIO.setmode(GPIO.BCM) 
+GPIO.setmode(GPIO.BCM)
 GPIO.setup(PIR,GPIO.IN)
 GPIO.setup(LED,GPIO.OUT)
 
-#Dane bazy danych i u¿ytkownika
-dbUser = 'exten'
-dbPassword = 'mp12345'
+dbUser = 'root'
+dbPassword = 'mikipi123'
 dbHost = 'rpi.bitnamiapp.com'
 dbFolder = 'RPI_ALARM'
 port = 3306
 
-#Zmienna wskazuj¹ca okres pomiaru temperatury oraz wilgotnoœci powietrza je¿eli nie zosta³a podana przy uruchamianiu skryptu
 t = 30
 if len(sys.argv) == 2:
         t = float(sys.argv[1])
-		
-#Funkcja obs³ugj¹ca zdarzenie wykrycia ruchu przez czujnik
+
+
+
 def moveDetectorFunction(channel):	
+#	print "Move detected: ",datetime.datetime.now()
 	GPIO.output(LED, True)   
 	insert("INSERT INTO `MOVE_DETECTION`(`DATE`) VALUES ('%s')" % datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))	
+#	time.sleep(2)
 	GPIO.output(LED,False)
 
-#Funkcja wysy³aj¹ca zapytanie do bazy danych
 def insert(query):
 	try:
 		db = MySQLdb.connect(dbHost, dbUser, dbPassword, dbFolder)
@@ -42,34 +40,34 @@ def insert(query):
 		curs.execute(query)
 		db.commit()
 	except:
+	#	print("ERROR MySQL, query: ")
+	#	print(query)
 		db.rollback()
 
-#Ustawienie wywo³ania funkcji obs³ugi zdarzenia podczas wyst¹pienia zbocza narastaj¹cego na pinie z podpbiêtym czujnikiem ruchu
 GPIO.add_event_detect(PIR, GPIO.RISING, callback=moveDetectorFunction)
 
-#G³ówna pêtla programu
 try:
 	while(True):
+	  # Run the DHT program to get the humidity and temperature readings!
 	  GPIO.output(LED,False)
-	  #Uruchomienie programu odczytuj¹cego dane z DHT11
 	  output = subprocess.check_output(["./Adafruit_DHT", "11", "4"]);
-	  #Wydzielenie informacji o temperaturze powietrza z wyniku dzia³ania programu
+#	  print output
 	  matches = re.search("Temp =\s+([0-9.]+)", output)
 	  if (not matches):
 	    time.sleep(3)
 	    continue
 	  temp = float(matches.group(1))
 	  
-	  #Wydzielenie informacji o wilgotnoœci powietrza z wyniku dzia³ania programu
+	  # search for humidity printout
 	  matches = re.search("Hum =\s+([0-9.]+)", output)
 	  if (not matches):
 	    time.sleep(3)
 	    continue
 	  humidity = float(matches.group(1))
-	  #Wys³anie do bazy danych informacji o temperaturze i wilgotnoœci powietrza
+#         print "Temperature: %.1f C" % temp
+#         print "Humidity:    %.1f %%" % humidity
 	  insert("INSERT INTO `HUMIDITY`(`DATE`, `VALUE`) VALUES ('%s','%.1f')" % (datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),humidity))
 	  insert("INSERT INTO `TEMPERATURE`(`DATE`, `VALUE`) VALUES ('%s','%.1f')" % (datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),temp))
-	  #Zatrzymanie dzia³ania pêtli na zadany czas
 	  time.sleep(t)
 except KeyboardInterrupt:
 	GPIO.cleanup()

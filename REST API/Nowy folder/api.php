@@ -10,18 +10,12 @@ $pool_conn['my_pass'] = "mp12345";
 if($_GET["min"] === null)
 	$pool_conn['min_date'] = "(select min(DATE) from ".$pool_conn['table_name'].")";
 else
-	if(strlen($_GET["min"])==10)
-		$pool_conn['min_date'] = "'".htmlspecialchars($_GET["min"])." 00:00:00'";
-	else
-		$pool_conn['min_date'] = "'".htmlspecialchars($_GET["min"])."'";
+	$pool_conn['min_date'] = "'".htmlspecialchars($_GET["min"])."'";
 if($_GET["max"] === null)
 	$pool_conn['max_date'] = "(select max(DATE) from ".$pool_conn['table_name'].")";
 else
-	if(strlen($_GET["max"])==10)
-		$pool_conn['max_date'] = "'".htmlspecialchars($_GET["max"])." 23:59:59'";
-	else
-		$pool_conn['max_date'] = "'".htmlspecialchars($_GET["max"])."'";
-		
+	$pool_conn['max_date'] = "'".htmlspecialchars($_GET["max"])."'";
+
 //Po³¹czenie z baz¹ danych
 mysql_connect($pool_conn['my_host'],$pool_conn['my_user'],$pool_conn['my_pass']);
 @mysql_select_db($pool_conn['db_name']) or die( "Unable to select database");

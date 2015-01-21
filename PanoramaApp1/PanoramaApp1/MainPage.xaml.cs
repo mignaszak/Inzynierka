@@ -13,7 +13,7 @@ using System.IO.IsolatedStorage;
 using Microsoft.Phone.Net.NetworkInformation;
 using Windows.Networking.Connectivity;
 
-namespace PanoramaApp1
+namespace KontrolkaAlarmu
 {
     public partial class MainPage : PhoneApplicationPage
     {
