@@ -8,10 +8,10 @@ using System.Windows.Markup;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using KontrolkaAlarmu.Resources;
-using KontrolkaAlarmu.ViewModels;
+using PanoramaApp1.Resources;
+using PanoramaApp1.ViewModels;
 
-namespace KontrolkaAlarmu
+namespace PanoramaApp1
 {
     public partial class App : Application
     {

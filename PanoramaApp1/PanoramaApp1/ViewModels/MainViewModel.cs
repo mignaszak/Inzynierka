@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using KontrolkaAlarmu.Resources;
+using PanoramaApp1.Resources;
 
-namespace KontrolkaAlarmu.ViewModels
+namespace PanoramaApp1.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {

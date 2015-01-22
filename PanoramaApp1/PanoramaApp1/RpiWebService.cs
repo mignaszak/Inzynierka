@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Xml.Linq;
 using System.Xml.Serialization;
-namespace KontrolkaAlarmu
+namespace PanoramaApp1
 {
     public class RpiWebService
     {
